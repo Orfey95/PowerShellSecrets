@@ -1,4 +1,4 @@
-﻿# Class of secrets properties
+# Class of secrets properties
 Class FieldsOfSecrets
 {
 [int64]$ID;             
@@ -23,7 +23,7 @@ Function Add-Secret ()
        $Secret = New-Object FieldsOfSecrets;
        # Creating ID for secret
        $Secret.ID = Convert-DateTimeToID;
-       # Creating ID for secret
+       # Receiving type of secret
        $Secret.TypeOfSecret = Read-Host 'What is type of your secret?';
        if($Secret.TypeOfSecret -eq '') { $Secret.TypeOfSecret = "site"; }
        # Receiving name for secret
@@ -107,6 +107,56 @@ Function Set-ExtendExpiresTimeBySecretID ([int64] $IdOfSecret, [int] $CountOfDay
 Function Remove-SecretByID ([int64] $IdOfSecret)
 {     
        $global:DictionaryOfSecrets = $global:DictionaryOfSecrets | Where-Object { $_.ID –ne $IdOfSecret }
+       # Writing dictionary of secrets to .secret file
+       $global:DictionaryOfSecrets | ConvertTo-Json | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret";
+}
+# Function to change secret by ID
+Function Update-SecretByID ([int64] $IdOfSecret)
+{
+       # Receiving type of secret
+       [string]$NewTypeOfSecret = Read-Host 'What is NEW type of your secret?';
+       # Receiving name for secret
+       [string]$NewName = Read-Host 'What is NEW your name?';
+       # Receiving password for secret
+       [string]$NewPassword = Read-Host 'What will be your NEW password?';
+       # Receiving URL for secret
+       [string]$NewURL = Read-Host 'What is the NEW URL of your secret?';
+       # Receiving tags for secret
+       [string]$NewTags = Read-Host 'Input NEW tags for your secret?';
+       # Receiving expires time for secret
+       try {[DateTime]$NewExpiresTime = Read-Host 'Input NEW expires time for your secret?'; } 
+       catch {}
+       # Overriding secret`s fields
+       for ([int]$i = 0; $i -lt $global:DictionaryOfSecrets.Length; $i++)
+       {
+            if($global:DictionaryOfSecrets[$i].ID -eq $IdOfSecret)
+            {
+                if($NewTypeOfSecret)
+                {
+                    $global:DictionaryOfSecrets[$i].TypeOfSecret = $NewTypeOfSecret;
+                }
+                if($NewName)
+                {
+                    $global:DictionaryOfSecrets[$i].Name = $NewName;
+                }
+                if($NewPassword)
+                {
+                    $global:DictionaryOfSecrets[$i].Password = $NewPassword;
+                }
+                if($NewURL)
+                {
+                    $global:DictionaryOfSecrets[$i].URL = $NewURL;
+                }
+                if($NewTags)
+                {
+                    $global:DictionaryOfSecrets[$i].Tags = $NewTags;
+                }
+                if($NewExpiresTime)
+                {
+                    $global:DictionaryOfSecrets[$i].ExpiresTime = $NewExpiresTime;
+                }
+            }
+       }
        # Writing dictionary of secrets to .secret file
        $global:DictionaryOfSecrets | ConvertTo-Json | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret";
 }
