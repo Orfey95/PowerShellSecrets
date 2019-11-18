@@ -81,7 +81,6 @@ Function Set-ExpiresTimeBySecretID ([int64] $IdOfSecret)
        }
        Write-Host -NoNewline "`nNew expire time is: " $NewExpiresTime "`n";
        for ([int]$i = 0; $i -lt $global:DictionaryOfSecrets.Length; $i++)
-       #foreach ($i in $global:DictionaryOfSecrets)
        {
             if($global:DictionaryOfSecrets[$i].ID -eq $IdOfSecret)
             {
@@ -155,6 +154,49 @@ Function Update-SecretByID ([int64] $IdOfSecret)
                 if($NewExpiresTime)
                 {
                     $global:DictionaryOfSecrets[$i].ExpiresTime = $NewExpiresTime;
+                }
+            }
+       }
+       # Writing dictionary of secrets to .secret file
+       $global:DictionaryOfSecrets | ConvertTo-Json | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret";
+}
+# Function to change tags by secret`s ID
+Function Set-TagsBySecretID ([int64] $IdOfSecret)
+{
+       # Receiving tags for secret
+       [string]$NewTags = Read-Host 'Input NEW tags for your secret?';
+       if(!$NewTags) { $NewTags="NoTags" }        
+       for ([int]$i = 0; $i -lt $global:DictionaryOfSecrets.Length; $i++)
+       {
+            if($global:DictionaryOfSecrets[$i].ID -eq $IdOfSecret)
+            {
+                $global:DictionaryOfSecrets[$i].Tags = $NewTags;
+            }
+       }
+       # Writing dictionary of secrets to .secret file
+       $global:DictionaryOfSecrets | ConvertTo-Json | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret";
+}
+# Function to add tags by secret`s ID
+Function Add-TagsBySecretID ([int64] $IdOfSecret)
+{
+       # Receiving tags for secret
+       [string]$NewTags = Read-Host 'Input NEW tags for your secret?';
+       if(!$NewTags)
+       {
+            break;
+       }             
+       for ([int]$i = 0; $i -lt $global:DictionaryOfSecrets.Length; $i++)
+       {
+            if($global:DictionaryOfSecrets[$i].ID -eq $IdOfSecret)
+            {
+                if($global:DictionaryOfSecrets[$i].Tags -ne "NoTags")
+                {
+                    $global:DictionaryOfSecrets[$i].Tags += " $NewTags";
+                }
+                else
+                {
+                    $global:DictionaryOfSecrets[$i].Tags = "";
+                    $global:DictionaryOfSecrets[$i].Tags += "$NewTags";
                 }
             }
        }
