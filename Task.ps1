@@ -15,7 +15,8 @@ $global:DictionaryOfSecrets = @()
 $global:DictionaryOfSecrets += (Get-Content "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret" | ConvertFrom-Json);
 # Clear .secret file
 "" | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret" -NoNewline -Encoding ASCII
-
+# Writing dictionary of secrets to .secret file
+$global:DictionaryOfSecrets | ConvertTo-Json | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret";
 # Function to add new secrets
 Function Add-Secret ()
 {
