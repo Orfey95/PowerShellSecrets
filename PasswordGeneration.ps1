@@ -5,28 +5,13 @@ Function Get-Password()
        # Get substring before sing %. Example: #20aDA.
        $PercentSign = $test.IndexOf("%");
        $StringBeforePercentSign = $test.Substring(0,$PercentSign);
-       # Get length of password and password alphabet. Example: 20 and aDA.
-       if($StringBeforePercentSign.IndexOf("D") -ne "-1")
-       {
-            $FirstLetter = $StringBeforePercentSign.IndexOf("D")
-       }
-       if($StringBeforePercentSign.IndexOf("A") -ne "-1")
-       {
-            if($StringBeforePercentSign.IndexOf("A") -lt $FirstLetter)
-            {
-                $FirstLetter = $StringBeforePercentSign.IndexOf("A")
-            }
-       }
-       if($StringBeforePercentSign.IndexOf("a") -ne "-1")
-       {
-            if($StringBeforePercentSign.IndexOf("a") -lt $FirstLetter)
-            {
-                $FirstLetter = $StringBeforePercentSign.IndexOf("a")
-            }
-       }
-       $PasswordLength = $test.Substring(1, $FirstLetter-1);
-       $PasswordAlphabet = $StringBeforePercentSign.Substring($FirstLetter);
+       # Get length of password. Example: 20.
+       $RegexForLengthOfPassword = [regex]"[0-9]+";
+       $PasswordLength = $RegexForLengthOfPassword.Match($StringBeforePercentSign).Value;
        Echo "Password Length: $PasswordLength";
+       # Get password alphabet. Example:aDA.
+       $RegexForAlphabetOfPassword = [regex]"[aAD]+";
+       $PasswordAlphabet = $RegexForAlphabetOfPassword.Match($StringBeforePercentSign).Value;       
        Echo "Password alphabet: $PasswordAlphabet";
        # Get substring after sing %. Example: A4D3a4Ada.
        $StringAfterPercentSign = $test.Substring($PercentSign+1);
