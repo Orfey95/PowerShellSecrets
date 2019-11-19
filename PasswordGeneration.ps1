@@ -71,7 +71,7 @@ Function Get-Password()
             $NumberOfDigits = 0
        }
        Echo "Number of digits: $NumberOfDigits";
-       # Get the number and composition of the rest of password. Example: Ada.
+       # Get the number and composition of the rest of password. Example: Ada and 9.
        $CompositionOfTheRestOfPassword = $StringAfterPercentSign.Substring($LengthOfSpecificPartOfPassword);
        Echo "Composition of the rest of password: $CompositionOfTheRestOfPassword";
        [int]$NumberOfTheRestOfPassword = $PasswordLength - $NumberOfCapitelLetters - $NumberOfSmallLetters - $NumberOfDigits;
