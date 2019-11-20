@@ -1,7 +1,7 @@
 ## PowerShell Project. Secrets Manager.
 Secret fields:
 1) ID; <br>
-**Description**. ID is generated automatically. It consists of *hhmmssddMMyyyy*(hours + minutes + seconds + day + month + year) of the moment of creation of the secret.
+**Description**. ID is generated automatically. It consists: *hhmmssddMMyyyy*(hours + minutes + seconds + day + month + year) at the moment of creation of the secret.
 2) Name; <br>
 **Description**. If no name is entered, the field will have the following contents: NoName.
 3) Password; <br>
