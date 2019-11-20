@@ -2,13 +2,13 @@
 Secret fields:
 1) ID; <br>
 **Description**. ID is generated automatically. It consists of *hhmmssddMMyyyy*(hours + minutes + seconds + day + month + year) of the moment of creation of the secret.
-2) Name;
+2) Name; <br>
 **Description**. If no name is entered, the field will have the following contents: NoName.
-3) Password;
+3) Password; <br>
 **Description**. If no password is entered, the field will be empty.
-4) URL;
+4) URL; <br>
 **Description**. If no URL is entered, the field will have the following contents: NoURL.
-5) Tags;
+5) Tags; <br>
 **Description**. There can be any number of tags. If no tags is entered, the field will have the following contents: NoTags.
 6) ExpiresTime. <br>
 **Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. If no URL is entered, the field will have the following contents: current date and time plus 30 days.
