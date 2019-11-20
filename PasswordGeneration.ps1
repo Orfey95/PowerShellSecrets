@@ -1,6 +1,13 @@
 Function Get-Password($Pattern)
 {      
        # Example string: #20aDA%A4D3a4ADa;
+       # Check password pattern
+       $RegexFoPattern = [regex]"^#[0-9]+[AaD]+%[AaD]+[0-9]+[AaD]*$";
+       if($RegexFoPattern.Match($Pattern).Success)
+       {
+            Echo "Password format error";
+            break;
+       }
        # Get substring before sing %. Example: #20aDA.
        $PercentSign = $Pattern.IndexOf("%");
        $StringBeforePercentSign = $Pattern.Substring(0,$PercentSign);
@@ -52,7 +59,11 @@ Function Get-Password($Pattern)
        }
        # Get length of specific part of password
        $LengthOfRestPartOfPassword = $PasswordLength - $Password.Length;
-       if($LengthOfRestPartOfPassword -lt 0){ Echo "Error"; }
+       if($LengthOfRestPartOfPassword -lt 0)
+       { 
+            Echo "Password format error";
+            break;
+       }
        # Generation rest part of password
        if(([regex]"D").Match($StringAfterSpecificPartOfPassword).Value)
        {
