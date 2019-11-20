@@ -22,5 +22,6 @@ List of functions:
 6) Function to extend expires time by ID: `Set-ExtendExpiresTimeBySecretID (ID, Days)`; <br>
 7) Function to remove secret by ID: `Remove-SecretByID (ID)`; <br>
 8) Function to change secret by ID: `Update-SecretByID (ID)`; <br>
+**Description**. After performing this function, all fields will be requested again. If you do not enter the new contents of the fields, then it will not change.
 9) Function to change tags by ID: `Set-TagsBySecretID (ID)`; <br>
 10) Function to add tags by ID: `Add-TagsBySecretID (ID)`. <br>
