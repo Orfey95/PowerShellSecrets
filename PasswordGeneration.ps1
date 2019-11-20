@@ -66,11 +66,9 @@ Function Get-Password($Pattern)
        {
             $Alphabet += (97..122 | % {[char]$_});
        }
-
        for($j = 0; $j -ne $LengthOfRestPartOfPassword; $j++) 
        {
             $Password += [string]($Alphabet | Get-Random);
        }
-
        Echo $Password;
 }
