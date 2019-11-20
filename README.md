@@ -12,7 +12,9 @@ Secret fields:
 **Description**. There can be any number of tags. If no tags is entered, the field will have the following contents: NoTags.
 6) ExpiresTime. <br>
 **Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. If no URL is entered, the field will have the following contents: current date and time plus 30 days.<br>
+
 **All secrets are also stored in .secret file in json format.**<br>
+
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
 2) Function to get secret by ID: `Get-SecretByID (ID)`; <br>
