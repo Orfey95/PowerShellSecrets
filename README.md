@@ -18,7 +18,7 @@ Secret fields:
 
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
-![Add-Secret](/Images/Add-Secret.png)
+![Add-Secret](/Images/Add_Secret.png)
 2) Function to get secret by ID: `Get-SecretByID (ID)`; <br>
 ![Get-SecretByID](/Images/Get-SecretByID.png)
 3) Function to get secret by Name: `Get-SecretByName (Name)`; <br>
