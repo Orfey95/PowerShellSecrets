@@ -148,3 +148,10 @@ URL          : google.com
 Tags         : NewTag1 NewTag2
 ExpiresTime  : 01.01.2021 0:00:00
 ```
+###Password Generation
+Example: <br>
+```
+PS C:\Users\Aleksandr> Get-Password "#20aDA%A4D3a4ADa"
+
+IRRT557hmxqy0GVynh11
+```
