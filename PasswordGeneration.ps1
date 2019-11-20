@@ -3,9 +3,9 @@ Function Get-Password($Pattern)
        # Example string: #20aDA%A4D3a4ADa;
        # Check password pattern
        $RegexForPattern = [regex]"^#[0-9]+[AaD]+%[AaD]+[0-9]+[AaD]*$";
-       if($RegexForPattern.Match($Pattern).Success)
+       if(!$RegexForPattern.Match($Pattern).Success)
        {
-            Echo "Password format error";
+            Echo "`nPassword format error";
             break;
        }
        # Get substring before sing %. Example: #20aDA.
