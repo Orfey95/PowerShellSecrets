@@ -1,11 +1,12 @@
-﻿Function Get-Password($Pattern)
+Function Get-Password($Pattern)
 {      
        # Example string: #20aDA%A4D3a4ADa;
        # Check password pattern
        $RegexForPattern = [regex]"^[#]{1}[0-9]+[AaD]+[%]{1}[AaD0-9]*[AaD]*$";
        if(!($RegexForPattern.Match($Pattern).Success))
        {
-            Echo "`nPassword format error";
+            Echo "`nPASSWORD FORMAT ERROR. The password pattern you specified does not meet the required criteria.";
+            Echo "Correct it, here is an example of a valid template: #20aDA%A4D3a4ADa";
             break;
        }
        # Get substring before sing %. Example: #20aDA.
@@ -62,13 +63,17 @@
        # Check password pattern
        if($LengthOfRestPartOfPassword -lt 0)
        { 
-            Echo "Password format error";
+            $TempPasswordLength = $Password.Length;
+            $TempPasswordLengthDifferent = $TempPasswordLength - $PasswordLength;
+            Echo "PASSWORD FORMAT ERROR. You set the password length: $PasswordLength, but it is less than the length of the password structure you specified: $StringAfterPercentSign.";
+            Echo "According to the structure of your password, its length should be: $TempPasswordLength. Add $TempPasswordLengthDifferent to the length of your password, or change its structure.";
             break;
        }
        # Check password pattern
        if(($LengthOfRestPartOfPassword -gt 0)-and(!$StringAfterSpecificPartOfPassword))
        { 
-            Echo "Password format error";
+            Echo "PASSWORD FORMAT ERROR. You set the password length: $PasswordLength, but it is more than the length of the password structure you specified: $StringAfterPercentSign.";
+            Echo "You can either reduce the password length or add additional values to its structure.";
             break;
        }
        # Generation rest part of password
