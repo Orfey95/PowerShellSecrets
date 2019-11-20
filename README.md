@@ -43,20 +43,107 @@ Tags         : google password gmail
 ExpiresTime  : 20.12.2019 22:40:20
 ```
 3) Function to get secret by Name: `Get-SecretByName (Name)`; <br>
-![Get-SecretByName](/Images/Get-SecretByName.png)
+```
+PS C:\Users\Aleksandr> Get-SecretByName Aleksandr
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Aleksandr
+Password     : 1234
+URL          : google.com
+Tags         : google password gmail
+ExpiresTime  : 20.12.2019 22:40:20
+```
 4) Function to get secret by Days to expire: `Get-SecretByExpiresTime (Days)`; <br>
-![Get-SecretByExpiresTime](/Images/Get-SecretByExpiresTime.png)
+```
+PS C:\Users\Aleksandr> Get-SecretByExpiresTime 30
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Aleksandr
+Password     : 1234
+URL          : google.com
+Tags         : google password gmail
+ExpiresTime  : 20.12.2019 22:40:20
+```
 5) Function to change expires time by ID: `Set-ExpiresTimeBySecretID (ID)`; <br>
 **Description**. After performing this function, field ExpiresTime will be requested again. If you do not enter the new content for this field, then it will not change.<br>
-![Set-ExpiresTimeBySecretID](/Images/Set-ExpiresTimeBySecretID.png)
+```
+PS C:\Users\Aleksandr> Set-ExpiresTimeBySecretID 10395320112019
+Input NEW expires time for your secret?: 2020/01/01 00:00:00
+
+New expire time is:  01.01.2020 0:00:00 
+```
 6) Function to extend expires time by ID: `Set-ExtendExpiresTimeBySecretID (ID, Days)`; <br>
-![Set-ExtendExpiresTimeBySecretID](/Images/Set-ExtendExpiresTimeBySecretID.png)
+```
+PS C:\Users\Aleksandr> Set-ExtendExpiresTimeBySecretID 10395320112019 366
+
+PS C:\Users\Aleksandr> Get-SecretByID 10395320112019
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Aleksandr
+Password     : 1234
+URL          : google.com
+Tags         : google password gmail
+ExpiresTime  : 01.01.2021 0:00:00
+```
 7) Function to remove secret by ID: `Remove-SecretByID (ID)`; <br>
-![Remove-SecretByID](/Images/Remove-SecretByID.png)
+```
+PS C:\Users\Aleksandr> Remove-SecretByID 10395320112019
+
+PS C:\Users\Aleksandr> Get-SecretByID 10395320112019
+
+There is no secret with such ID!
+```
 8) Function to change secret by ID: `Update-SecretByID (ID)`; <br>
 **Description**. After performing this function, all fields will be requested again. If no ExpiresTime is entered, the field will have the following contents: current date and time plus 30 days. <br>
-![Update-SecretByID](/Images/Update-SecretByID.png)
+```
+PS C:\Users\Aleksandr> Update-SecretByID 10395320112019
+What is NEW type of your secret?: 
+What is NEW your name?: Sasha
+What will be your NEW password?: 
+What is the NEW URL of your secret?: 
+Input NEW tags for your secret?: 
+Input NEW expires time for your secret?: 
+
+PS C:\Users\Aleksandr> Get-SecretByID 10395320112019
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Sasha
+Password     : 1234
+URL          : google.com
+Tags         : google password gmail
+ExpiresTime  : 01.01.2021 0:00:00
+```
 9) Function to change tags by ID: `Set-TagsBySecretID (ID)`; <br>
-![Set-TagsBySecretID](/Images/Set-TagsBySecretID.png)
+```
+PS C:\Users\Aleksandr> Set-TagsBySecretID 10395320112019
+Input NEW tags for your secret?: NewTag1
+
+PS C:\Users\Aleksandr> Get-SecretByID 10395320112019
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Sasha
+Password     : 1234
+URL          : google.com
+Tags         : NewTag1
+ExpiresTime  : 01.01.2021 0:00:00
+```
 10) Function to add tags by ID: `Add-TagsBySecretID (ID)`. <br>
-![Add-TagsBySecretID](/Images/Add-TagsBySecretID.png)
+```
+PS C:\Users\Aleksandr> Add-TagsBySecretID 10395320112019
+Input NEW tags for your secret?: NewTag2
+
+PS C:\Users\Aleksandr> Get-SecretByID 10395320112019
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Sasha
+Password     : 1234
+URL          : google.com
+Tags         : NewTag1 NewTag2
+ExpiresTime  : 01.01.2021 0:00:00
+```
