@@ -14,13 +14,13 @@ Secret fields:
 **Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. If no URL is entered, the field will have the following contents: current date and time plus 30 days.
 
 List of functions:
-1) Function to add new secrets: <code>Add-Secret ()</code>;
-2) Function to get secret by ID: <code>Get-SecretByID (ID)</code>;
-3) Function to get secret by Name: <code>Get-SecretByName (Name)</code>;
-4) Function to get secret by Days to expire: <code>Get-SecretByExpiresTime (DaysToExpire)</code>;
-5) Function to change expires time by ID: <code>Set-ExpiresTimeBySecretID (ID)</code>;
-6) Function to extend expires time by ID: <code>Set-ExtendExpiresTimeBySecretID (ID, Days)</code>;
-7) Function to remove secret by ID: <code>Remove-SecretByID (ID)</code>;
-8) Function to change secret by ID: <code>Update-SecretByID (ID)</code>;
-9) Function to change tags by ID: <code>Set-TagsBySecretID (ID)</code>;
-10) Function to add tags by ID: <code>Add-TagsBySecretID (ID)</code>.
+1) Function to add new secrets: `Add-Secret ()`; <br>
+2) Function to get secret by ID: `Get-SecretByID (ID)`; <br>
+3) Function to get secret by Name: `Get-SecretByName (Name)`; <br>
+4) Function to get secret by Days to expire: `Get-SecretByExpiresTime (Days)`; <br>
+5) Function to change expires time by ID: `Set-ExpiresTimeBySecretID (ID)`; <br>
+6) Function to extend expires time by ID: `Set-ExtendExpiresTimeBySecretID (ID, Days)`; <br>
+7) Function to remove secret by ID: `Remove-SecretByID (ID)`; <br>
+8) Function to change secret by ID: `Update-SecretByID (ID)`; <br>
+9) Function to change tags by ID: `Set-TagsBySecretID (ID)`; <br>
+10) Function to add tags by ID: `Add-TagsBySecretID (ID)`. <br>
