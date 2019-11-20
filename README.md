@@ -41,8 +41,8 @@ List of functions:
 ![Add-TagsBySecretID](/Images/Add-TagsBySecretID.png)
 
 
-
-```PS C:\Users\Aleksandr> Add-Secret
+```
+PS C:\Users\Aleksandr> Add-Secret
 What is type of your secret?: site
 What is your name?: Aleksandr
 What will be your password?: 1234
@@ -50,4 +50,4 @@ What is the URL of your secret?: google.com
 Input tags for your secret?: google password gmail
 Input expires time for your secret?:
 
-```You have successfully created a new secret!
+You have successfully created a new secret!
