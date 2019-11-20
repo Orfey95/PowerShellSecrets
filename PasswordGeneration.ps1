@@ -1,28 +1,24 @@
-Function Get-Password()
+Function Get-Password($Pattern)
 {      
-       # Example string
-       $test = "#20aDA%A4D3a4Ada";
+       # Example string: #20aDA%A4D3a4ADa;
        # Get substring before sing %. Example: #20aDA.
-       $PercentSign = $test.IndexOf("%");
-       $StringBeforePercentSign = $test.Substring(0,$PercentSign);
+       $PercentSign = $Pattern.IndexOf("%");
+       $StringBeforePercentSign = $Pattern.Substring(0,$PercentSign);
        # Get length of password. Example: 20.
        $RegexForLengthOfPassword = [regex]"[0-9]+";
        $PasswordLength = $RegexForLengthOfPassword.Match($StringBeforePercentSign).Value;
-       Echo "Password Length: $PasswordLength";
        # Get password alphabet. Example:aDA.
        $RegexForAlphabetOfPassword = [regex]"[aAD]+";
-       $PasswordAlphabet = $RegexForAlphabetOfPassword.Match($StringBeforePercentSign).Value;       
-       Echo "Password alphabet: $PasswordAlphabet";
+       $PasswordAlphabet = $RegexForAlphabetOfPassword.Match($StringBeforePercentSign).Value;
        # Get substring after sing %. Example: A4D3a4Ada.
-       $StringAfterPercentSign = $test.Substring($PercentSign+1);
+       $StringAfterPercentSign = $Pattern.Substring($PercentSign+1);
        #-----------------------------------------------GENERATION-----------------------------------------------
        [string]$Password;
        $RegexForSpecificPartOfPassword = [regex]"[AaD]+[0-9]+";
        $TempSpecificPartOfPassword = $RegexForSpecificPartOfPassword.Matches($StringAfterPercentSign).Value;
        # Get substring after specific part of password. Example: Ada.
-       $LengthOfSpecificPartOfPassword = (-join $RegexForSpecificPartOfPassword.Matches($StringAfterPercentSign).Value).Length;
-       $StringAfterSpecificPartOfPassword = $StringAfterPercentSign.Substring($LengthOfSpecificPartOfPassword);
-       Echo "Rest part of password: $StringAfterSpecificPartOfPassword";
+       $LengthOfStringOfSpecificPartOfPassword = (-join $RegexForSpecificPartOfPassword.Matches($StringAfterPercentSign).Value).Length;
+       $StringAfterSpecificPartOfPassword = $StringAfterPercentSign.Substring($LengthOfStringOfSpecificPartOfPassword);
        # Generation specific part of password
        foreach($count in $TempSpecificPartOfPassword)
        {           
@@ -54,5 +50,27 @@ Function Get-Password()
                 $i = 0;
            }
        }
+       # Get length of specific part of password
+       $LengthOfRestPartOfPassword = $PasswordLength - $Password.Length;
+       if($LengthOfRestPartOfPassword -lt 0){ Echo "Error"; }
+       # Generation rest part of password
+       if(([regex]"D").Match($StringAfterSpecificPartOfPassword).Value)
+       {
+            $Alphabet += (0..9);
+       }
+       if(([regex]"A").Match($StringAfterSpecificPartOfPassword).Value)
+       {
+            $Alphabet += (65..90 | % {[char]$_});
+       }
+       if(([regex]"a").Match($StringAfterSpecificPartOfPassword).Value)
+       {
+            $Alphabet += (97..122 | % {[char]$_});
+       }
+
+       for($j = 0; $j -ne $LengthOfRestPartOfPassword; $j++) 
+       {
+            $Password += [string]($Alphabet | Get-Random);
+       }
+
        Echo $Password;
 }
