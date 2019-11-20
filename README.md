@@ -20,6 +20,7 @@ List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
 ```
 PS C:\Users\Aleksandr> Add-Secret
+
 What is type of your secret?: site
 What is your name?: Aleksandr
 What will be your password?: 1234
@@ -30,7 +31,17 @@ Input expires time for your secret?:
 You have successfully created a new secret!
 ```
 2) Function to get secret by ID: `Get-SecretByID (ID)`; <br>
-![Get-SecretByID](/Images/Get-SecretByID.png)
+```
+PS C:\Users\Aleksandr> Get-SecretByID 10395320112019
+
+ID           : 10395320112019
+TypeOfSecret : site
+Name         : Aleksandr
+Password     : 1234
+URL          : google.com
+Tags         : google password gmail
+ExpiresTime  : 20.12.2019 22:40:20
+```
 3) Function to get secret by Name: `Get-SecretByName (Name)`; <br>
 ![Get-SecretByName](/Images/Get-SecretByName.png)
 4) Function to get secret by Days to expire: `Get-SecretByExpiresTime (Days)`; <br>
@@ -49,16 +60,3 @@ You have successfully created a new secret!
 ![Set-TagsBySecretID](/Images/Set-TagsBySecretID.png)
 10) Function to add tags by ID: `Add-TagsBySecretID (ID)`. <br>
 ![Add-TagsBySecretID](/Images/Add-TagsBySecretID.png)
-
-
-```
-PS C:\Users\Aleksandr> Add-Secret
-What is type of your secret?: site
-What is your name?: Aleksandr
-What will be your password?: 1234
-What is the URL of your secret?: google.com
-Input tags for your secret?: google password gmail
-Input expires time for your secret?:
-
-You have successfully created a new secret!
-```
