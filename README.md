@@ -18,7 +18,6 @@ Secret fields:
 
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
-![Add-Secret](/Images/Add_Secret.png)
 ```
 PS C:\Users\Aleksandr> Add-Secret
 What is type of your secret?: site
