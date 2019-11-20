@@ -2,8 +2,8 @@ Function Get-Password($Pattern)
 {      
        # Example string: #20aDA%A4D3a4ADa;
        # Check password pattern
-       $RegexFoPattern = [regex]"^#[0-9]+[AaD]+%[AaD]+[0-9]+[AaD]*$";
-       if($RegexFoPattern.Match($Pattern).Success)
+       $RegexForPattern = [regex]"^#[0-9]+[AaD]+%[AaD]+[0-9]+[AaD]*$";
+       if($RegexForPattern.Match($Pattern).Success)
        {
             Echo "Password format error";
             break;
