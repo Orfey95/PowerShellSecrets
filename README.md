@@ -19,6 +19,17 @@ Secret fields:
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
 ![Add-Secret](/Images/Add_Secret.png)
+```
+PS C:\Users\Aleksandr> Add-Secret
+What is type of your secret?: site
+What is your name?: Aleksandr
+What will be your password?: 1234
+What is the URL of your secret?: google.com
+Input tags for your secret?: google password gmail
+Input expires time for your secret?:
+
+You have successfully created a new secret!
+```
 2) Function to get secret by ID: `Get-SecretByID (ID)`; <br>
 ![Get-SecretByID](/Images/Get-SecretByID.png)
 3) Function to get secret by Name: `Get-SecretByName (Name)`; <br>
@@ -51,3 +62,4 @@ Input tags for your secret?: google password gmail
 Input expires time for your secret?:
 
 You have successfully created a new secret!
+```
