@@ -14,6 +14,7 @@ Secret fields:
 **Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. If no URL is entered, the field will have the following contents: current date and time plus 30 days.<br>
 
 **All secrets are also stored in .secret file in json format.**<br>
+![Secret file](/Images/Secret_File.png)
 
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
