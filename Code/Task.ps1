@@ -102,7 +102,7 @@ Function Set-ExtendExpiresTimeBySecretID ([int64] $IdOfSecret, [int] $CountOfDay
             }
        }
        # Writing dictionary of secrets to .secret file
-       $global:DictionaryOfSecrets | ConvertTo-Json | Out-File "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret";
+       $global:DictionaryOfSecrets | ConvertTo-Json | Out-File $global:PathToSecretFile;
 }
 # Function to remove secret by ID
 Function Remove-SecretByID ([int64] $IdOfSecret)
