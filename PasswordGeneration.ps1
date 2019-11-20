@@ -17,13 +17,13 @@ Function Get-Password($Pattern)
        # Get password alphabet. Example:aDA.
        $RegexForAlphabetOfPassword = [regex]"[aAD]+";
        $PasswordAlphabet = $RegexForAlphabetOfPassword.Match($StringBeforePercentSign).Value;
-       # Get substring after sing %. Example: A4D3a4Ada.
+       # Get substring after sing %. Example: A4D3a4ADa.
        $StringAfterPercentSign = $Pattern.Substring($PercentSign+1);
        #-----------------------------------------------GENERATION-----------------------------------------------
        [string]$Password;
        $RegexForSpecificPartOfPassword = [regex]"[AaD]+[0-9]+";
        $TempSpecificPartOfPassword = $RegexForSpecificPartOfPassword.Matches($StringAfterPercentSign).Value;
-       # Get substring after specific part of password. Example: Ada.
+       # Get substring after specific part of password. Example: ADa.
        $LengthOfStringOfSpecificPartOfPassword = (-join $RegexForSpecificPartOfPassword.Matches($StringAfterPercentSign).Value).Length;
        $StringAfterSpecificPartOfPassword = $StringAfterPercentSign.Substring($LengthOfStringOfSpecificPartOfPassword);
        # Generation specific part of password
@@ -59,7 +59,14 @@ Function Get-Password($Pattern)
        }
        # Get length of specific part of password
        $LengthOfRestPartOfPassword = $PasswordLength - $Password.Length;
+       # Check password pattern
        if($LengthOfRestPartOfPassword -lt 0)
+       { 
+            Echo "Password format error";
+            break;
+       }
+       # Check password pattern
+       if(($LengthOfRestPartOfPassword -gt 0)-and(!$StringAfterSpecificPartOfPassword))
        { 
             Echo "Password format error";
             break;
