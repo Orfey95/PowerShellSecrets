@@ -43,6 +43,7 @@ Tags         : google password gmail
 ExpiresTime  : 20.12.2019 22:40:20
 ```
 3) Function to get secret by Name: `Get-SecretByName (Name)`; <br>
+**Description**. If no name is entered, the field will have the following contents: NoName. <br>
 ```
 PS C:\Users\Aleksandr> Get-SecretByName Aleksandr
 
