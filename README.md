@@ -167,13 +167,16 @@ Correct it, here is an example of a valid template: #20aDA%A4D3a4ADa
 ```
 PS C:\Users\Aleksandr> Get-Password "#2aDA%A4D3a4ADa"
 
-PASSWORD FORMAT ERROR. You set the password length: 2, but it is less than the length of the password structure you specified: A4D3a4ADa.
-According to the structure of your password, its length should be: 11. Add 9 to the length of your password, or change its structure.
+PASSWORD FORMAT ERROR. You set the password length: 2, but it is less than 
+the length of the password structure you specified: A4D3a4ADa.
+According to the structure of your password, its length should be: 11. 
+Add 9 to the length of your password, or change its structure.
 ```
 3) Incorrect template entered. The specified password length is more than the length of the password structure you specified.
 ```
 PS C:\Users\Aleksandr> Get-Password "#20aDA%A4D3a4"
 
-PASSWORD FORMAT ERROR. You set the password length: 20, but it is more than the length of the password structure you specified: A4D3a4.
+PASSWORD FORMAT ERROR. You set the password length: 20, but it is more than 
+the length of the password structure you specified: A4D3a4.
 You can either reduce the password length or add additional values to its structure.
 ```
