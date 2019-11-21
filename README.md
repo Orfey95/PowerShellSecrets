@@ -165,7 +165,7 @@ Example:<br>
 * aDA - password alphabet = capital letters, small letters, digits;
 * A4D3a4 - certain password structure = 4 capital letters + 3 digits + 4 small letters = IRRT557hmxq;
 * ADa - uncertain password structure = 20 - (4 + 3 + 4) = 9 capital letters or digits or small letters = y0GVynh11.
-Example: <br>
+
 ```
 PS C:\Users\Aleksandr> Get-Password "#20aDA%A4D3a4ADa"
 
