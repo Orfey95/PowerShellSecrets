@@ -150,20 +150,20 @@ ExpiresTime  : 01.01.2021 0:00:00
 ```
 ### Password Generation
 Designations:
-A - any capital letter of the Latin alphabet;
-a - any small letter of the Latin alphabet;
-D - any digit.
+* A - any capital letter of the Latin alphabet;
+* a - any small letter of the Latin alphabet;
+* D - any digit.
 Password Pattern:
-\#{N} - password length;
-aAD - password alphabet;
-a{N}A{N}D{N} - certain password structure;
-aAD - uncertain password structure.
+* \#{N} - password length;
+* aAD - password alphabet;
+* a{N}A{N}D{N} - certain password structure;
+* aAD - uncertain password structure.
 Example:<br>
-#20aDA%A4D3a4ADa  -   IRRT557hmxqy0GVynh11
-#20 - password length = 20;
-aDA - password alphabet = capital letters, small letters, digits;
-A4D3a4 - certain password structure = 4 capital letters + 3 digits + 4 small letters = IRRT557hmxq;
-ADa - uncertain password structure = 20 - (4 + 3 + 4) = 9 capital letters or digits or small letters = y0GVynh11.
+* #20aDA%A4D3a4ADa  -   IRRT557hmxqy0GVynh11
+* #20 - password length = 20;
+* aDA - password alphabet = capital letters, small letters, digits;
+* A4D3a4 - certain password structure = 4 capital letters + 3 digits + 4 small letters = IRRT557hmxq;
+* ADa - uncertain password structure = 20 - (4 + 3 + 4) = 9 capital letters or digits or small letters = y0GVynh11.
 Example: <br>
 ```
 PS C:\Users\Aleksandr> Get-Password "#20aDA%A4D3a4ADa"
