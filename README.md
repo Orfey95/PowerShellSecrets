@@ -158,6 +158,7 @@ Password Pattern:
 * aAD - password alphabet;
 * a{N}A{N}D{N} - certain password structure;
 * aAD - uncertain password structure.
+
 Example:<br>
 * #20aDA%A4D3a4ADa  -   IRRT557hmxqy0GVynh11
 * #20 - password length = 20;
