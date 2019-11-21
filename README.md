@@ -196,3 +196,19 @@ PASSWORD FORMAT ERROR. You set the password length: 20, but it is more than
 the length of the password structure you specified: A4D3a4.
 You can either reduce the password length or add additional values to its structure.
 ```
+4) Incorrect template entered. Password alphabet mismatch and its structure.
+```
+PS C:\Users\Aleksandr> Get-Password "#20A%A4Aa"
+
+The password alphabet does not have small letters.
+```
+```
+PS C:\Users\Aleksandr> Get-Password "#20a%A4Aa"
+
+The password alphabet does not have capital letters.
+```
+```
+PS C:\Users\Aleksandr> Get-Password "#20A%A4D4A"
+
+The password alphabet does not have digitals.
+```
