@@ -2,18 +2,19 @@
 Class FieldsOfSecrets
 {
 [int64]$ID             
-[string]$TypeOfSecret   # Example: site
-[string]$Name           # Example: Sasha
-[string]$Password       # Example: 1234
-[string]$URL            # Example: google.com
-[string]$Tags           # Example: google password secret
-[DateTime]$ExpiresTime  # Example: 2019/11/17 00:00:00
+[string]$TypeOfSecret     # Example: site
+[string]$Name             # Example: Sasha
+[string]$Password         # Example: 1234
+[string]$URL              # Example: google.com
+[string]$Tags             # Example: google password secret
+[DateTime]$ExpiresTime    # Example: 2019/11/17 00:00:00
+[string]$PasswordsHistory
 }
 # Creation of dictionary of secrets
 $Global:DictionaryOfSecrets = @()
 # Get dictionary of secrets from .secret file
 $Global:PathToSecretFile = "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secrets.secret" 
-$Global:DictionaryOfSecrets += (Get-Content $Global:PathToSecretFile | ConvertFrom-Json) 
+$Global:DictionaryOfSecrets += (Get-Content $Global:PathToSecretFile | ConvertFrom-Json)
 # Clear .secret file
 "" | Out-File $Global:PathToSecretFile -NoNewline -Encoding ASCII
 # Writing dictionary of secrets to .secret file
@@ -51,11 +52,13 @@ function Add-Secret {
        for(;;){
             $Secret.Password = Read-Host 'What will be your password?'
             if($Secret.Password -ne ""){
-                break; 
+                # Add password to history
+                $Secret.PasswordsHistory += $Secret.Password
+                break 
             } else {
                 echo "Input password again!!!"
             }
-       } 
+       }
        # Receiving URL for secret
        $Secret.URL = Read-Host 'What is the URL of your secret?' 
        if($Secret.URL -eq '') { 
@@ -78,7 +81,7 @@ function Add-Secret {
        $Global:DictionaryOfSecrets += $Secret
        echo "`nYou have successfully created a new secret!"
        # Writing dictionary of secrets to .secret file
-       $Global:DictionaryOfSecrets | ConvertTo-Json | Out-File $Global:PathToSecretFile
+       $Global:DictionaryOfSecrets | ConvertTo-Json | Out-File $Global:PathToSecretFile       
 }
 # Function to delete all secrets
 function Delete-AllSecrets {
@@ -86,6 +89,7 @@ function Delete-AllSecrets {
        $Global:DictionaryOfSecrets = $null;
        "" | Out-File $Global:PathToSecretFile -NoNewline -Encoding ASCII
 }
+
 # Function to convert Date and Time to ID
 function Convert-DateTimeToID {
        Return [int64]$ID = "{0:hhmmssddMMyyyy}" -f (Get-Date)
@@ -98,7 +102,7 @@ function Get-SecretByID {
             [Int64]
             $IdOfSecret
        )
-       $Global:DictionaryOfSecrets | Where-Object {$_.ID -eq $IdOfSecret}
+       $Global:DictionaryOfSecrets | Where-Object {$_.ID -eq $IdOfSecret} | Select-Object -Property ID, Name, Password, URL, Tags, ExpiresTime
        if(!($Global:DictionaryOfSecrets | Where-Object {$_.ID -eq $IdOfSecret})) {
             echo "`nThere is no secret with such ID!"
        }
@@ -114,7 +118,7 @@ function Get-SecretByName {
        if($NameOfSecret -eq '') { 
             $NameOfSecret = "NoName" 
        }
-       $Global:DictionaryOfSecrets | Where-Object {$_.Name -eq $NameOfSecret}
+       $Global:DictionaryOfSecrets | Where-Object {$_.Name -eq $NameOfSecret} | Select-Object -Property ID, Name, Password, URL, Tags, ExpiresTime
 }
 # Function to get secret by days to expire
 function Get-SecretByExpiresTime {
@@ -214,6 +218,8 @@ function Update-SecretByID {
                 }
                 if($NewPassword) {
                     $Global:DictionaryOfSecrets[$i].Password = $NewPassword
+                    # Add password to history
+                    $Global:DictionaryOfSecrets[$i].PasswordsHistory += " $NewPassword"
                 }
                 if($NewURL) {
                     $Global:DictionaryOfSecrets[$i].URL = $NewURL
@@ -275,4 +281,47 @@ function Add-TagsBySecretID {
        }
        # Writing dictionary of secrets to .secret file
        $Global:DictionaryOfSecrets | ConvertTo-Json | Out-File $Global:PathToSecretFile
+}
+# Function to get password history by secret`s ID
+function Get-PasswordHistoryByID {
+       [CmdletBinding()]
+       param (
+            [Parameter(Mandatory = $true)]
+            [Int64]
+            $IdOfSecret
+       )
+       $Global:DictionaryOfSecrets | Where-Object {$_.ID -eq $IdOfSecret} | Select-Object -Property PasswordsHistory
+       if(!($Global:DictionaryOfSecrets | Where-Object {$_.ID -eq $IdOfSecret})) {
+            echo "`nThere is no secret with such ID!"
+       }
+}
+# Function to set password from password history by secret`s ID
+function Set-PasswordFromHistoryByID {
+       [CmdletBinding()]
+       param (
+            [Parameter(Mandatory = $true)]
+            [Int64]
+            $IdOfSecret
+       )       
+       if(!($Global:DictionaryOfSecrets | Where-Object {$_.ID -eq $IdOfSecret})) {
+            echo "`nThere is no secret with such ID!"
+            break
+       }
+       for ([int]$i = 0; $i -lt $Global:DictionaryOfSecrets.Length; $i++) {
+            if($Global:DictionaryOfSecrets[$i].ID -eq $IdOfSecret) {                
+                $PasswordHistoryArray = $Global:DictionaryOfSecrets[$i].PasswordsHistory.Split(" ")
+                for([int]$j = 0; $j -lt $PasswordHistoryArray.Length; $j++){
+                    Write-Host -NoNewline $j -  $PasswordHistoryArray[$j] `n
+                }
+                for(;;){
+                    [int]$PasswordID = Read-Host 'Choose one of the passwords, or or leave the request unanswered so that nothing changes'
+                    if($PasswordHistoryArray.Length -le $PasswordID){
+                        echo "You have selected an invalid password number!!`n"
+                    } else {
+                        $Global:DictionaryOfSecrets[$i].Password = $PasswordHistoryArray[$PasswordID]
+                        break
+                    }
+                }
+            }
+       }
 }
