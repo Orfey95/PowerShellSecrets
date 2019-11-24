@@ -48,7 +48,14 @@ function Add-Secret {
             $Secret.Name = "NoName" 
        }
        # Receiving password for secret
-       $Secret.Password = Read-Host 'What will be your password?' 
+       for(;;){
+            $Secret.Password = Read-Host 'What will be your password?'
+            if($Secret.Password -ne ""){
+                break; 
+            } else {
+                echo "Input password again!!!"
+            }
+       } 
        # Receiving URL for secret
        $Secret.URL = Read-Host 'What is the URL of your secret?' 
        if($Secret.URL -eq '') { 
