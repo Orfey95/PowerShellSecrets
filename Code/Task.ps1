@@ -17,7 +17,7 @@ $Global:DictionaryOfSecrets += (Get-Content $Global:PathToSecretFile | ConvertFr
 # Clear .secret file
 "" | Out-File $Global:PathToSecretFile -NoNewline -Encoding ASCII
 # Writing dictionary of secrets to .secret file
-$Global:DictionaryOfSecrets | ConvertTo-Json | Out-File $Global:PathToSecretFile;
+$Global:DictionaryOfSecrets | ConvertTo-Json | Out-File $Global:PathToSecretFile
 # Function to add new secrets
 function Add-Secret {
        <#
@@ -72,6 +72,12 @@ function Add-Secret {
        echo "`nYou have successfully created a new secret!"
        # Writing dictionary of secrets to .secret file
        $Global:DictionaryOfSecrets | ConvertTo-Json | Out-File $Global:PathToSecretFile
+}
+# Function to delete all secrets
+function Delete-AllSecrets {
+       [CmdletBinding()]
+       $Global:DictionaryOfSecrets = $null;
+       "" | Out-File $Global:PathToSecretFile -NoNewline -Encoding ASCII
 }
 # Function to convert Date and Time to ID
 function Convert-DateTimeToID {
