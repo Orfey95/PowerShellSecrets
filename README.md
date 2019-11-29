@@ -223,7 +223,7 @@ PasswordsHistory
 ----------------
 1234 4321  
 ```
-2) Function to set password from password history by ID: `Set-PasswordFromHistoryByID (ID)`; <br>
+2) Function to set password from password history by ID: `Set-PasswordFromHistoryByID (ID)`. <br>
 ```
 PS C:\Users\Aleksandr> Set-PasswordFromHistoryByID 9160129112019
 
@@ -259,7 +259,7 @@ Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----   
 -a----       29.11.2019      9:59           1188 Secret.secret.AES   
 ```
-3) Function to decrypt the secret file: `Unprotect-SecretFile ()`; <br>
+3) Function to decrypt the secret file: `Unprotect-SecretFile ()`. <br>
 ```
 PS C:\Users\Aleksandr> Unprotect-SecretFile
 
