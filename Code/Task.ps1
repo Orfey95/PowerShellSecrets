@@ -27,7 +27,7 @@ if(($IsSecretFile -eq "False")-and($IsSecretAESFile -eq "True")) {
        Unprotect-SecretFile
 }
 if(($IsSecretFile -eq "False")-and($IsSecretAESFile -eq "False")) {
-       "" | Out-File $Global:PathToSecretFile
+       "" | Out-File $Global:PathToSecretFile -NoNewline -Encoding ASCII
 }
 # Get dictionary of secrets from .secret file
 $Global:DictionaryOfSecrets += (Get-Content $Global:PathToSecretFile | ConvertFrom-Json)
