@@ -212,3 +212,32 @@ PS C:\Users\Aleksandr> Get-Password "#20A%A4D4A"
 
 The password alphabet does not have digitals.
 ```
+### Password history
+List of functions:
+1) Function to get password history by ID: `Get-PasswordHistoryByID (ID)`; <br>
+```
+PS C:\Users\Aleksandr> Get-PasswordHistoryByID 9160129112019
+
+PasswordsHistory
+----------------
+1234 4321  
+```
+2) Function to set password from password history by ID: `Set-PasswordFromHistoryByID (ID)`; <br>
+```
+PS C:\Users\Aleksandr> Set-PasswordFromHistoryByID 9160129112019
+
+0 - 1234 
+1 - 4321 
+Choose one of the passwords, or or leave the request unanswered so that nothing changes: 0
+```
+Result:
+```
+PS C:\Users\Aleksandr> Get-SecretByID 9160129112019
+
+ID          : 9160129112019
+Name        : Aleksandr
+Password    : 1234
+URL         : google.com
+Tags        : google pass
+ExpiresTime : 29.12.2019 9:16:31
+```
