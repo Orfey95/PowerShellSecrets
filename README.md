@@ -254,15 +254,15 @@ You have successfully created AES key!
 ```
 PS C:\Users\Aleksandr> Protect-SecretFile
 
-Mode                LastWriteTime         Length Name                                                                                             
-----                -------------         ------ ----                                                                                             
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----   
 -a----       29.11.2019      9:59           1188 Secret.secret.AES   
 ```
 3) Function to decrypt the secret file: `Unprotect-SecretFile ()`; <br>
 ```
 PS C:\Users\Aleksandr> Unprotect-SecretFile
 
-Mode                LastWriteTime         Length Name                                                                                            
-----                -------------         ------ ----                                                                                             
+Mode                LastWriteTime         Length Name 
+----                -------------         ------ ----
 -a----       29.11.2019     10:00           1166 Secret.secret    
 ```
