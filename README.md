@@ -229,9 +229,7 @@ PS C:\Users\Aleksandr> Set-PasswordFromHistoryByID 9160129112019
 0 - 1234 
 1 - 4321 
 Choose one of the passwords, or or leave the request unanswered so that nothing changes: 0
-```
-Result:
-```
+
 PS C:\Users\Aleksandr> Get-SecretByID 9160129112019
 
 ID          : 9160129112019
@@ -241,3 +239,7 @@ URL         : google.com
 Tags        : google pass
 ExpiresTime : 29.12.2019 9:16:31
 ```
+### Secret file encryption
+**For encryption of the secret file, the AES cipher is used, with the CBC mode. The AES key is recorded and stored in .txt file.**
+![Secret file](/Images/Key.png)
+List of functions:
