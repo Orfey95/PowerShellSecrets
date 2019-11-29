@@ -11,7 +11,7 @@ Secret fields:
 5) Tags; <br>
 **Description**. There can be any number of tags. If no tags is entered, the field will have the following contents: NoTags.
 6) ExpiresTime. <br>
-**Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. If no ExpiresTime is entered, the field will have the following contents: current date and time plus 30 days.<br>
+**Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. <br>
 
 **All secrets are also stored in .secret file in json format.**<br>
 ![Secret file](/Images/Secrets_File.png)
