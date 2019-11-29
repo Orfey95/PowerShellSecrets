@@ -244,3 +244,25 @@ ExpiresTime : 29.12.2019 9:16:31
 ![Secret file](/Images/Key.png)
 
 List of functions:
+1) Function to get secret key: `Get-CryptographyKey ()`; <br>
+```
+PS C:\Users\Aleksandr> Get-CryptographyKey
+
+You have successfully created AES key!
+```
+2) Function to encrypt the secret file: `Protect-SecretFile ()`; <br>
+```
+PS C:\Users\Aleksandr> Protect-SecretFile
+
+Mode                LastWriteTime         Length Name                                                                                             
+----                -------------         ------ ----                                                                                             
+-a----       29.11.2019      9:59           1188 Secret.secret.AES   
+```
+3) Function to decrypt the secret file: `Unprotect-SecretFile ()`; <br>
+```
+PS C:\Users\Aleksandr> Unprotect-SecretFile
+
+Mode                LastWriteTime         Length Name                                                                                            
+----                -------------         ------ ----                                                                                             
+-a----       29.11.2019     10:00           1166 Secret.secret    
+```
