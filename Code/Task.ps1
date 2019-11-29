@@ -1,4 +1,4 @@
-﻿# Import AES cmdlets
+# Import AES cmdlets
 Import-Module -Name 'C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\FileCryptography.ps1'
 Import-Module -Name 'C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\FunctionsAES.ps1'
 Import-Module -Name 'C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\PasswordGeneration.ps1'
@@ -63,7 +63,7 @@ function Add-Secret {
        # Receiving password for secret
        for(;;){
             $Secret.Password = Read-Host 'What will be your password?'
-            if($Secret.Password -ne ""){
+            if(($Secret.Password -ne "")-and(!$Secret.Password.Contains(" "))){
                 # Add password to history
                 $Secret.PasswordsHistory += $Secret.Password
                 break 
@@ -210,7 +210,14 @@ function Update-SecretByID {
        # Receiving name for secret
        [string]$NewName = Read-Host 'What is NEW your name?'
        # Receiving password for secret
-       [string]$NewPassword = Read-Host 'What will be your NEW password?'
+       for(;;){
+            [string]$NewPassword = Read-Host 'What will be your NEW password?'
+            if(!$NewPassword.Contains(" ")){
+                break 
+            } else {
+                echo "No space in password! Input password again!"
+            }
+       }
        # Receiving URL for secret
        [string]$NewURL = Read-Host 'What is the NEW URL of your secret?'
        # Receiving tags for secret
