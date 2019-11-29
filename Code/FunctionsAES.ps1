@@ -1,5 +1,6 @@
-﻿# Function to get secret key
+# Function to get secret key
 function Get-CryptographyKey {
+       [CmdletBinding()]
        # Create Key 
        $Global:Key = New-CryptographyKey -Algorithm AES 
        $Global:Key = ConvertFrom-SecureString -securestring $Global:Key
@@ -8,11 +9,13 @@ function Get-CryptographyKey {
 }
 # Function to encrypt the secret file
 function Protect-SecretFile {
+       [CmdletBinding()]
        $Global:Key = (Get-Content $Global:PathToKey | ConvertTo-SecureString)
        Protect-File -FileName $Global:PathToSecretFile -Key $Global:Key -Algorithm AES -CipherMode CBC -RemoveSource
 }
 # Function to decrypt the secret file
 function Unprotect-SecretFile {
+       [CmdletBinding()]
        [string]$AESFilePath = $Global:PathToSecretFile + '.AES'
        $Global:Key = (Get-Content $Global:PathToKey | ConvertTo-SecureString)
        Unprotect-File -FileName $AESFilePath -Key $Global:Key -Algorithm AES -CipherMode CBC -RemoveSource
