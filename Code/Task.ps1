@@ -20,10 +20,14 @@ $Global:DictionaryOfSecrets = @()
 $Global:PathToSecretFile = "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\Secret.secret" 
 $Global:PathToKey = "C:\Users\Aleksandr\Desktop\DevOpsLabs\PowerShell_Task\key.txt" 
 # Check file availability
-[string]$IsFile = Test-Path $Global:PathToSecretFile
-if($IsFile -eq "False") {
+[string]$IsSecretFile = Test-Path $Global:PathToSecretFile
+[string]$IsSecretAESFile = Test-Path ($Global:PathToSecretFile + '.AES')
+if(($IsSecretFile -eq "False")-and($IsSecretAESFile -eq "True")) {
        $Global:Key = Get-Content $Global:PathToKey
        Unprotect-SecretFile
+}
+if(($IsSecretFile -eq "False")-and($IsSecretAESFile -eq "False")) {
+       "" | Out-File $Global:PathToSecretFile
 }
 # Get dictionary of secrets from .secret file
 $Global:DictionaryOfSecrets += (Get-Content $Global:PathToSecretFile | ConvertFrom-Json)
