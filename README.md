@@ -18,6 +18,7 @@ Secret fields:
 
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
+**Description**. If no ExpiresTime is entered, the field will have the following contents: current date and time plus 30 days. <br>
 ```
 PS C:\Users\Aleksandr> Add-Secret
 
