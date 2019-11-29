@@ -241,7 +241,7 @@ ExpiresTime : 29.12.2019 9:16:31
 ```
 ### Secret file encryption
 **For encryption of the secret file, the AES cipher is used, with the CBC mode. The AES key is recorded and stored in .txt file.**<br>
-![Secret file](/Images/Key.png)
+![Secret file](/Images/Key_File.png)
 
 List of functions:
 1) Function to get secret key: `Get-CryptographyKey ()`; <br>
