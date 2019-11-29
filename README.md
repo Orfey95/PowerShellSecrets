@@ -14,7 +14,7 @@ Secret fields:
 **Description**. This field has next format: *year/mounth/day hours:minutes:seconds*. Example: 2019/11/17 00:00:00. If no ExpiresTime is entered, the field will have the following contents: current date and time plus 30 days.<br>
 
 **All secrets are also stored in .secret file in json format.**<br>
-![Secret file](/Images/Secret_File.png)
+![Secret file](/Images/Secrets_File.png)
 
 List of functions:
 1) Function to add new secrets: `Add-Secret ()`; <br>
@@ -240,6 +240,7 @@ Tags        : google pass
 ExpiresTime : 29.12.2019 9:16:31
 ```
 ### Secret file encryption
-**For encryption of the secret file, the AES cipher is used, with the CBC mode. The AES key is recorded and stored in .txt file.**
+**For encryption of the secret file, the AES cipher is used, with the CBC mode. The AES key is recorded and stored in .txt file.**<br>
 ![Secret file](/Images/Key.png)
+
 List of functions:
